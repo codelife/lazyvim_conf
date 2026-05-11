@@ -1,0 +1,35 @@
+-- Keymaps are automatically loaded on the VeryLazy event
+-- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- Add any additional keymaps here
+local map = vim.keymap.set
+local opts = { silent = true }
+
+-- 插入模式 Home/End
+map("i", "<c-a>", "<Home>", opts)
+map("i", "<c-e>", "<End>", opts)
+
+-- LSP 诊断跳转
+map("n", "gj", vim.diagnostic.goto_next, opts)
+map("n", "gk", vim.diagnostic.goto_prev, opts)
+
+-- 重命名
+map("n", "gn", vim.lsp.buf.rename, opts)
+
+-- 快速保存/关闭Buffer
+map("n", ";w", "<cmd>w<cr>", opts)
+map("n", ";q", "<cmd>bd<cr>", opts)
+
+-- Buffer 切换
+map("n", "<c-p>", "<cmd>BufferLineCyclePrev<cr>", opts)
+map("n", "<c-n>", "<cmd>BufferLineCycleNext<cr>", opts)
+
+-- 翻译
+map("v", "ts", ":TranslateW<CR>", opts)
+
+-- 编辑历史来回跳（你用的 before.nvim）
+map("n", "<c-h>", function()
+  require("before").jump_to_last_edit()
+end, opts)
+map("n", "<c-l>", function()
+  require("before").jump_to_next_edit()
+end, opts)
