@@ -37,6 +37,9 @@ require("lazy").setup({
   }, -- automatically check for plugin updates
   performance = {
     rtp = {
+      paths = {
+        vim.fn.stdpath("data") .. "/site",
+      },
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",

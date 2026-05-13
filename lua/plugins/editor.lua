@@ -7,16 +7,16 @@ return {
       local hop = require("hop")
       local direction = require("hop.hint").HintDirection
 
-      vim.keymap.set("", "f", function()
+      vim.keymap.set("n", "f", function()
         hop.hint_char1({ direction = direction.AFTER_CURSOR, current_line_only = true })
       end)
-      vim.keymap.set("", "F", function()
+      vim.keymap.set("n", "F", function()
         hop.hint_char1({ direction = direction.BEFORE_CURSOR, current_line_only = true })
       end)
-      vim.keymap.set("", "w", function()
+      vim.keymap.set("n", "w", function()
         hop.hint_words({ direction = direction.AFTER_CURSOR })
       end)
-      vim.keymap.set("", "b", function()
+      vim.keymap.set("n", "b", function()
         hop.hint_words({ direction = direction.BEFORE_CURSOR })
       end)
     end,
@@ -41,25 +41,17 @@ return {
     end,
   },
 
-  -- 数字/布尔值/日期递增递减
+  -- 数字/布尔值/日期递增递减由 lazyvim.plugins.extras.editor.dial 提供，
+  -- 这里只在默认 group 上加一条 asc/desc 切换
   {
     "monaqa/dial.nvim",
-    keys = { "<C-a>", "<C-x>" },
-    config = function()
+    opts = function(_, opts)
       local augend = require("dial.augend")
-      require("dial.config").augends:register_group({
-        default = {
-          augend.integer.alias.decimal,
-          augend.integer.alias.hex,
-          augend.constant.alias.bool,
-          augend.date.alias["%Y/%m/%d"],
-          augend.constant.new({ elements = { "True", "False" }, word = true, cyclic = true }),
-          augend.constant.new({ elements = { "&&", "||" }, word = false, cyclic = true }),
-          augend.constant.new({ elements = { "asc", "desc" }, word = true, cyclic = true }),
-        },
-      })
-      vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal())
-      vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal())
+      table.insert(opts.groups.default, augend.constant.new({
+        elements = { "asc", "desc" },
+        word = true,
+        cyclic = true,
+      }))
     end,
   },
 
