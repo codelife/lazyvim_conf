@@ -12,6 +12,10 @@ map("i", "<c-e>", "<End>", opts)
 map("n", "gj", vim.diagnostic.goto_next, opts)
 map("n", "gk", vim.diagnostic.goto_prev, opts)
 
+-- B1/B2: Hunk 导航（lvim 习惯 <leader>j/k；LazyVim 默认 ]h/[h 仍可用）
+map("n", "<leader>j", "<cmd>Gitsigns next_hunk<cr>", { silent = true, desc = "Next Hunk" })
+map("n", "<leader>k", "<cmd>Gitsigns prev_hunk<cr>", { silent = true, desc = "Prev Hunk" })
+
 -- 重命名
 map("n", "gn", vim.lsp.buf.rename, opts)
 

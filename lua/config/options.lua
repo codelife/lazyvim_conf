@@ -4,4 +4,4 @@
 local opt = vim.opt
 
 -- 完全对齐你的原配置
-opt.scrolloff = 20
+opt.scrolloff = 30
