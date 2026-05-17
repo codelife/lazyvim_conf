@@ -16,6 +16,12 @@ map("n", "gk", vim.diagnostic.goto_prev, opts)
 map("n", "<leader>j", "<cmd>Gitsigns next_hunk<cr>", { silent = true, desc = "Next Hunk" })
 map("n", "<leader>k", "<cmd>Gitsigns prev_hunk<cr>", { silent = true, desc = "Prev Hunk" })
 
+map("n", "<leader>gd", "<cmd>Git diffthis<cr>", { silent = true, desc = "Git Diff This" })
+
+-- <leader>/ → gc（mini.comment toggle），用 vim.keymap.set 直接覆盖 snacks grep
+map("n", "<leader>/", "gcc", { silent = true, desc = "Toggle comment" })
+map("x", "<leader>/", "gc", { silent = true, desc = "Toggle comment (visual)" })
+
 -- 重命名
 map("n", "gn", vim.lsp.buf.rename, opts)
 
@@ -27,9 +33,6 @@ map("n", ";q", "<cmd>bd<cr>", opts)
 map("n", "<c-p>", "<cmd>BufferLineCyclePrev<cr>", opts)
 map("n", "<c-n>", "<cmd>BufferLineCycleNext<cr>", opts)
 
--- 翻译
-map("v", "ts", ":TranslateW<CR>", opts)
-
 -- 编辑历史来回跳（你用的 before.nvim）
 map("n", "<c-h>", function()
   require("before").jump_to_last_edit()
@@ -37,3 +40,8 @@ end, opts)
 map("n", "<c-l>", function()
   require("before").jump_to_next_edit()
 end, opts)
+
+map("v", "<leader>ts", ":TranslateW<CR>", { noremap = true, silent = true })
+map("n", "<leader>ts", ":TranslateW<CR>", { noremap = true, silent = true })
+
+map("n", "<leader>gr", ":Gitsigns reset_buffer<CR>", { noremap = true, silent = true })

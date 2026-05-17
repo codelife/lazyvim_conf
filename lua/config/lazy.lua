@@ -22,6 +22,7 @@ require("lazy").setup({
     { import = "plugins" },
   },
   defaults = {
+    timeout = 600, -- time in ms before giving up on loading a plugin
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
     -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
     lazy = false,

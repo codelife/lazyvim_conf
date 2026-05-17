@@ -7,7 +7,8 @@ return {
       vim.cmd.colorscheme("dracula")
     end,
   },
-
+  { "hzchirs/vim-material" },
+  { "patstockwell/vim-monokai-tasty" },
   -- 透明窗口
   {
     "xiyaowong/transparent.nvim",
