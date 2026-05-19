@@ -20,7 +20,9 @@ map("n", "<leader>gd", "<cmd>Git diffthis<cr>", { silent = true, desc = "Git Dif
 
 -- <leader>/ → gc（mini.comment toggle），用 vim.keymap.set 直接覆盖 snacks grep
 map("n", "<leader>/", "gcc", { silent = true, desc = "Toggle comment" })
-map("x", "<leader>/", "gc", { silent = true, desc = "Toggle comment (visual)" })
+map("x", "<leader>/", "gcc", { silent = true, desc = "Toggle comment (visual)" })
+
+map("n", "<leader>\\", "<cmd>terminal<cr>", { silent = true, desc = "Toggle comment (visual)" })
 
 -- 重命名
 map("n", "gn", vim.lsp.buf.rename, opts)
@@ -43,5 +45,9 @@ end, opts)
 
 map("v", "<leader>ts", ":TranslateW<CR>", { noremap = true, silent = true })
 map("n", "<leader>ts", ":TranslateW<CR>", { noremap = true, silent = true })
+
+map("n", "<leader>tn", ":tabnew<CR>", { noremap = true, silent = true })
+
+map("n", "<leader>tn", ":tabnew<CR>", { noremap = true, silent = true })
 
 map("n", "<leader>gr", ":Gitsigns reset_buffer<CR>", { noremap = true, silent = true })
