@@ -83,7 +83,10 @@ return {
         html = { "prettierd" },
         yaml = { "prettierd" },
       },
-      formatters = { golines = { prepend_args = { "-m", "120" } } },
+      formatters = {
+        golines = { prepend_args = { "-m", "120" } },
+        stylua = { prepend_args = { "--indent-type", "Spaces", "--indent-width", "2", "--column-width", "120" } },
+      },
     },
   },
 
@@ -140,6 +143,50 @@ return {
         },
       },
       appearance = { use_nvim_cmp_as_default = false, nerd_font_variant = "mono" },
+    },
+  },
+  {
+    {
+      "rmagatti/goto-preview",
+      event = "VeryLazy",
+      keys = {
+        {
+          "gp",
+          function()
+            require("goto-preview").goto_preview_definition()
+          end,
+          desc = "Goto Preview Definition",
+        },
+        {
+          "gi",
+          function()
+            require("goto-preview").goto_preview_implementation()
+          end,
+          desc = "Goto Preview Implementation",
+        },
+        {
+          "gq",
+          function()
+            require("goto-preview").close_all_win()
+          end,
+          desc = "Close Preview Windows",
+        },
+      },
+    },
+    {
+      "folke/snacks.nvim",
+      opts = {
+        picker = {
+          win = {
+            input = {
+              keys = {
+                ["<C-j>"] = { "history_forward", mode = { "i", "n" } },
+                ["<C-k>"] = { "history_back", mode = { "i", "n" } },
+              },
+            },
+          },
+        },
+      },
     },
   },
 }

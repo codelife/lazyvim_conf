@@ -51,3 +51,5 @@ map("n", "<leader>tn", ":tabnew<CR>", { noremap = true, silent = true })
 map("n", "<leader>tn", ":tabnew<CR>", { noremap = true, silent = true })
 
 map("n", "<leader>gr", ":Gitsigns reset_buffer<CR>", { noremap = true, silent = true })
+
+map("n", "<leader>ge", "<c-w>h<cmd>q<cr>", { noremap = true, silent = true })

@@ -5,3 +5,4 @@ local opt = vim.opt
 
 -- 完全对齐你的原配置
 opt.scrolloff = 30
+vim.opt.fillchars:append("diff:-")
