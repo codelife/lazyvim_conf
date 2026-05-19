@@ -18,11 +18,13 @@ map("n", "<leader>k", "<cmd>Gitsigns prev_hunk<cr>", { silent = true, desc = "Pr
 
 map("n", "<leader>gd", "<cmd>Git diffthis<cr>", { silent = true, desc = "Git Diff This" })
 
--- <leader>/ → gc（mini.comment toggle），用 vim.keymap.set 直接覆盖 snacks grep
-map("n", "<leader>/", "gcc", { silent = true, desc = "Toggle comment" })
-map("x", "<leader>/", "gcc", { silent = true, desc = "Toggle comment (visual)" })
-
 map("n", "<leader>\\", "<cmd>terminal<cr>", { silent = true, desc = "Toggle comment (visual)" })
+
+vim.keymap.set({ "n", "v" }, "<leader>/", "gcc", { remap = true, desc = "Toggle comment" })
+
+vim.keymap.set("n", "<leader>tf", function()
+  require("lazyvim.util").format.toggle()
+end, { desc = "Toggle format on save" })
 
 -- 重命名
 map("n", "gn", vim.lsp.buf.rename, opts)

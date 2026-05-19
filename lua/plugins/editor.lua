@@ -329,4 +329,9 @@ return {
       { "gP", false },
     },
   },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown" },
+    opts = {},
+  },
 }
