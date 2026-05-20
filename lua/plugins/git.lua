@@ -27,13 +27,13 @@ return {
         end,
         desc = "Blame Line",
       },
-      {
-        "<leader>gd",
-        function()
-          require("gitsigns").diffthis("~")
-        end,
-        desc = "Diff This (vs HEAD)",
-      },
+      -- {
+      --   "<leader>gd",
+      --   function()
+      --     require("gitsigns").diffthis("~")
+      --   end,
+      --   desc = "Diff This (vs HEAD)",
+      -- },
     },
   },
 }

@@ -28,6 +28,8 @@ end, { desc = "Toggle format on save" })
 
 -- 重命名
 map("n", "gn", vim.lsp.buf.rename, opts)
+map("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "LSP definition" })
+map("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "LSP references" })
 
 -- 快速保存/关闭Buffer
 map("n", ";w", "<cmd>w<cr>", opts)

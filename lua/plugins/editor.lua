@@ -25,7 +25,6 @@ return {
   { "tpope/vim-repeat", event = "BufRead" },
   { "andymass/vim-matchup", event = "BufReadPost" },
   { "HiPhish/rainbow-delimiters.nvim" },
-
   {
     "kevinhwang91/nvim-hlslens",
     event = "BufRead",
@@ -117,12 +116,18 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-
     config = function()
       local lspconfig = require("lspconfig")
 
+      local on_attach = function(client, bufnr)
+        -- disable lsp formatting
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+      end
+
       -- Lua (Neovim dev)
       lspconfig.lua_ls.setup({
+        on_attach = on_attach,
         settings = {
           Lua = {
             diagnostics = { globals = { "vim" } },
@@ -132,10 +137,11 @@ return {
       })
 
       -- TypeScript
-      lspconfig.ts_ls.setup({})
+      lspconfig.ts_ls.setup({ on_attach = on_attach })
 
       -- Go (SRE core)
       lspconfig.gopls.setup({
+        on_attach = on_attach,
         settings = {
           gopls = {
             staticcheck = true,
@@ -147,10 +153,11 @@ return {
       })
 
       -- Python automation
-      lspconfig.pyright.setup({})
+      lspconfig.pyright.setup({ on_attach = on_attach })
 
       -- YAML / Kubernetes
       lspconfig.yamlls.setup({
+        on_attach = on_attach,
         settings = {
           yaml = {
             kubernetes = true,
@@ -161,23 +168,23 @@ return {
       })
 
       -- Docker
-      lspconfig.dockerls.setup({})
+      lspconfig.dockerls.setup({ on_attach = on_attach })
 
       -- Bash / Shell
-      lspconfig.bashls.setup({})
+      lspconfig.bashls.setup({ on_attach = on_attach })
 
       -- SQL
-      lspconfig.sqlls.setup({})
+      lspconfig.sqlls.setup({ on_attach = on_attach })
 
       -- Ansible
-      lspconfig.ansiblels.setup({})
+      lspconfig.ansiblels.setup({ on_attach = on_attach })
     end,
   },
   {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        go = { "gofumpt", "goimports", "golines" },
+        go = { "gofumpt", "goimports" },
         lua = { "stylua" },
         python = { "ruff" },
 
@@ -189,16 +196,11 @@ return {
         json = { "fixjson" },
         yaml = { "yamlfmt" },
         terraform = { "terraform" },
-        dockerfile = { "hadolint" }, -- lint only, format optional
         sql = { "sqlfmt" },
         markdown = { "prettierd" },
       },
 
       formatters = {
-        golines = {
-          prepend_args = { "-m", "120" },
-        },
-
         stylua = {
           prepend_args = {
             "--indent-type",
@@ -213,23 +215,23 @@ return {
 
       format_on_save = {
         timeout_ms = 2000,
-        lsp_fallback = true,
+        lsp_fallback = false,
       },
     },
   },
 
   {
     "mfussenegger/nvim-lint",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      local lint = require("lint")
-      lint.linters_by_ft = {
+    opts = {
+      -- Event to trigger linters
+      events = { "BufWritePost", "BufReadPost", "InsertLeave" },
+      linters_by_ft = {
         javascript = { "eslint_d", "trivy" },
         typescript = { "eslint_d", "trivy" },
         javascriptreact = { "eslint_d", "trivy" },
         typescriptreact = { "eslint_d", "trivy" },
         python = { "ruff", "trivy" },
-        go = { "golangci-lint", "trivy" },
+        go = { "golangcilint", "trivy" },
         dockerfile = { "hadolint", "trivy" },
         sql = { "sqlfluff" },
         proto = { "buf" },
@@ -238,13 +240,8 @@ return {
         markdown = { "markdownlint-cli2" },
         terraform = { "tflint" },
         bash = { "shellcheck" },
-      }
-      vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
-        callback = function()
-          lint.try_lint()
-        end,
-      })
-    end,
+      },
+    },
   },
 
   {
