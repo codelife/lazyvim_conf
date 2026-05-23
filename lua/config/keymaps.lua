@@ -18,6 +18,8 @@ map("n", "<leader>k", "<cmd>Gitsigns prev_hunk<cr>", { silent = true, desc = "Pr
 
 map("n", "<leader>gd", "<cmd>Git diffthis<cr>", { silent = true, desc = "Git Diff This" })
 
+map("n", "<leader>bs", "<cmd>BufferLineSortByDirectory<cr>", { silent = true, desc = "sort buffer by directory" })
+
 map("n", "<leader>\\", "<cmd>terminal<cr>", { silent = true, desc = "Toggle comment (visual)" })
 
 vim.keymap.set({ "n", "v" }, "<leader>/", "gcc", { remap = true, desc = "Toggle comment" })
@@ -34,6 +36,7 @@ map("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "LSP references"
 -- 快速保存/关闭Buffer
 map("n", ";w", "<cmd>w<cr>", opts)
 map("n", ";q", "<cmd>bd<cr>", opts)
+map("n", "yW", "yiW", { silent = true, remap = false })
 
 -- Buffer 切换
 map("n", "<c-p>", "<cmd>BufferLineCyclePrev<cr>", opts)
