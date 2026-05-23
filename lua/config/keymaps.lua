@@ -24,6 +24,10 @@ map("n", "<leader>\\", "<cmd>terminal<cr>", { silent = true, desc = "Toggle comm
 
 vim.keymap.set({ "n", "v" }, "<leader>/", "gcc", { remap = true, desc = "Toggle comment" })
 
+map("n", "<leader>mp", "<cmd>MarkdownPreview<cr>", { silent = true, desc = "Markdown Preview " })
+map("n", "<leader>mg", "<cmd>GenTocMarked<cr>", { silent = true, desc = "Markdown GenTocMarked " })
+map("n", "<leader>mf", "<cmd>PanguAll<cr>", { silent = true, desc = "Markdown Text format" })
+
 vim.keymap.set("n", "<leader>tf", function()
   require("lazyvim.util").format.toggle()
 end, { desc = "Toggle format on save" })

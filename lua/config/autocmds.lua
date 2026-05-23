@@ -12,3 +12,11 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.foldmethod = "manual"
   end,
 })
+
+-- markdown 保存后执行 PanguAll
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "*.md",
+  callback = function()
+    vim.cmd("silent! PanguAll")
+  end,
+})

@@ -212,11 +212,6 @@ return {
           },
         },
       },
-
-      format_on_save = {
-        timeout_ms = 2000,
-        lsp_fallback = false,
-      },
     },
   },
 
@@ -331,4 +326,14 @@ return {
     ft = { "markdown" },
     opts = {},
   },
+  {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && yarn install",
+    ft = "markdown",
+  },
+  {
+    "mzlogin/vim-markdown-toc",
+    ft = "markdown",
+  },
+  { "hotoo/pangu.vim", ft = { "markdown", "vimwiki", "text" } },
 }
