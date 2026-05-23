@@ -8,6 +8,20 @@ local opts = { silent = true }
 map("i", "<c-a>", "<Home>", opts)
 map("i", "<c-e>", "<End>", opts)
 
+vim.api.nvim_set_hl(0, "BlinkCmpGhostText", {
+  fg = "#8ea0ff",
+  italic = true,
+})
+
+vim.api.nvim_set_hl(0, "CopilotSuggestion", {
+  fg = "#8ea0ff",
+})
+
+vim.api.nvim_set_hl(0, "PmenuSel", {
+  bg = "#4c566a",
+  fg = "#fffff2",
+  bold = true,
+})
 -- LSP 诊断跳转
 map("n", "gj", vim.diagnostic.goto_next, opts)
 map("n", "gk", vim.diagnostic.goto_prev, opts)
@@ -22,7 +36,7 @@ map("n", "<leader>bs", "<cmd>BufferLineSortByDirectory<cr>", { silent = true, de
 
 map("n", "<leader>\\", "<cmd>terminal<cr>", { silent = true, desc = "Toggle comment (visual)" })
 
-vim.keymap.set({ "n", "v" }, "<leader>/", "gcc", { remap = true, desc = "Toggle comment" })
+vim.keymap.set({ "n", "v" }, "<leader>/", "gc", { remap = true, desc = "Toggle comment" })
 
 map("n", "<leader>mp", "<cmd>MarkdownPreview<cr>", { silent = true, desc = "Markdown Preview " })
 map("n", "<leader>mg", "<cmd>GenTocMarked<cr>", { silent = true, desc = "Markdown GenTocMarked " })
