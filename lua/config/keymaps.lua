@@ -40,7 +40,6 @@ map("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "LSP references"
 -- 快速保存/关闭Buffer
 map("n", ";w", "<cmd>w<cr>", opts)
 map("n", ";q", "<cmd>bd<cr>", opts)
-map("n", "yW", "yiW", { silent = true, remap = false })
 
 -- Buffer 切换
 map("n", "<c-p>", "<cmd>BufferLineCyclePrev<cr>", opts)
