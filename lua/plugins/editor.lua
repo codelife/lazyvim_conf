@@ -231,7 +231,7 @@ return {
         sql = { "sqlfluff" },
         proto = { "buf" },
         ansible = { "ansible-lint" },
-        groovy = { "npm-groovy-lint" },
+        --groovy = { "npm-groovy-lint" },
         markdown = { "markdownlint-cli2" },
         terraform = { "tflint" },
         bash = { "shellcheck" },

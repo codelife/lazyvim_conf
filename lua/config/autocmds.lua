@@ -20,3 +20,11 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     vim.cmd("silent! PanguAll")
   end,
 })
+require("tokyonight").setup({
+  transparent = true,
+})
+
+require("dracula").setup({
+  transparent_bg = true,
+})
+vim.cmd.colorscheme("dracula")
