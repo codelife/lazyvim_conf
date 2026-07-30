@@ -1,6 +1,9 @@
 return {
   {
     "zbirenbaum/copilot.lua",
+    git = {
+      depth = 1,
+    },
     cmd = "Copilot",
     event = "InsertEnter",
     opts = {

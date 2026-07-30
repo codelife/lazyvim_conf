@@ -33,4 +33,12 @@ return {
     { "<leader>bh", "<cmd>BufferLineCloseLeft<cr>", desc = "Close Left Buffers" },
     { "<leader>bl", "<cmd>BufferLineCloseRight<cr>", desc = "Close Right Buffers" },
   },
+
+  highlights = {
+    buffer_selected = {
+      fg = "#ffffff", -- 选中标题文字颜色
+      bg = "#3b4252", -- 选中背景色
+      bold = true,
+    },
+  },
 }

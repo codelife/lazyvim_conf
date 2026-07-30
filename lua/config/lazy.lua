@@ -15,6 +15,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  git = {
+    timeout = 300, -- 默认60秒，改成300秒（单位：秒）
+  },
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },

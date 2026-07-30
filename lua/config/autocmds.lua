@@ -20,6 +20,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     vim.cmd("silent! PanguAll")
   end,
 })
+
 require("tokyonight").setup({
   transparent = true,
 })
@@ -27,4 +28,21 @@ require("tokyonight").setup({
 require("dracula").setup({
   transparent_bg = true,
 })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "BufferLineBufferSelected", {
+      fg = "#ffcc00",
+      bg = "#282c34",
+      bold = true,
+    })
+  end,
+})
+
 vim.cmd.colorscheme("dracula")
+
+vim.api.nvim_set_hl(0, "BufferLineBufferSelected", {
+  fg = "#ffcc00",
+  bg = "#282c34",
+  bold = true,
+})
